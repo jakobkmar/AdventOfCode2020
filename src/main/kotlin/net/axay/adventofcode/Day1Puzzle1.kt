@@ -11,7 +11,4 @@ fun main() {
         return
     }
 
-    numbers.map {
-    }
-
 }
