@@ -5,7 +5,6 @@ import java.io.File
 fun main() {
 
     var validCounter = 0
-
     for (passwordLine in File("./src/main/resources/input/Day2Puzzle2.txt").readLines()) {
         val lineParts = passwordLine.split(' ')
         if (PasswordPolicy2(lineParts[0], lineParts[1]).isValid(lineParts[2]))
