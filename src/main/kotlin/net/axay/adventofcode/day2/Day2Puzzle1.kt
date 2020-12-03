@@ -1,11 +1,11 @@
-package net.axay.adventofcode
+package net.axay.adventofcode.day2
 
 import java.io.File
 
 fun main() {
 
     var validCounter = 0
-    for (passwordLine in File("./src/main/resources/input/Day2Puzzle1.txt").readLines()) {
+    for (passwordLine in File("./src/main/resources/input/Day2.txt").readLines()) {
         val lineParts = passwordLine.split(' ')
         if (PasswordPolicy1(lineParts[0], lineParts[1]).isValid(lineParts[2]))
             validCounter++

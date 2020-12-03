@@ -1,4 +1,4 @@
-package net.axay.adventofcode
+package net.axay.adventofcode.day2
 
 import java.io.File
 
