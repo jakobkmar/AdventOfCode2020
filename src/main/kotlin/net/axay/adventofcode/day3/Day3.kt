@@ -15,7 +15,7 @@ object Day3 : Day(3) {
         listOf(1 to 1, 3 to 1, 5 to 1, 7 to 1, 1 to 2)
             .map { treeGrid.countTrees(it).toLong() }
             .reduce { acc, i -> acc * i }
-            .also { println("All results multiplied with each other: $it") }
+            .let { println("All results multiplied with each other: $it") }
     }
 }
 
