@@ -1,34 +1,30 @@
 package net.axay.adventofcode.day3
 
-data class Position(val down: Int, val right: Int) {
-    fun move(down: Int, right: Int) = Position(this.down + down, this.right + right)
-}
+import net.axay.adventofcode.common.Day
 
-class TreeGrid(serializedMap: List<String>) {
-    private val positions = HashMap<Position, Boolean>()
-    private val width: Int
-    private val height: Int
+fun main() = Day3.run()
 
-    init {
-        serializedMap.forEachIndexed { lineIndex, line ->
-            line.forEachIndexed { charIndex, char ->
-                positions[Position(lineIndex + 1, charIndex + 1)] = char == '#'
-            }
-        }
-        width = serializedMap.first().length
-        height = serializedMap.size
+object Day3 : Day(3) {
+    private val treeGrid = TreeGrid(inputLines)
+
+    override fun part1() {
+        println("There were ${treeGrid.countTrees(3 to 1)} trees on the slope")
     }
 
-    fun isTree(position: Position): Boolean {
-        val checkDown = if (position.down <= height) position.down else throw InvalidPositionException()
-        val checkRight = if (position.right > 0) {
-            val modulo = (position.right % width)
-            if (modulo == 0) width else modulo
-        } else throw InvalidPositionException()
-
-        return positions[Position(checkDown, checkRight)] ?: throw InvalidPositionException()
+    override fun part2() {
+        listOf(1 to 1, 3 to 1, 5 to 1, 7 to 1, 1 to 2)
+            .map { treeGrid.countTrees(it).toLong() }
+            .reduce { acc, i -> acc * i }
+            .also { println("All results multiplied with each other: $it") }
     }
-    fun isGround(position: Position) = position.down == height
 }
 
-class InvalidPositionException : IllegalArgumentException("The given position does not exist")
+class TreeGrid(private val serializedMap: List<String>) {
+    private val width = serializedMap.first().length
+
+    fun countTrees(slope: Pair<Int, Int>) =
+        (serializedMap.indices step slope.second)
+            .map { (((it / slope.second) * slope.first) % width) to it }
+            .filter { serializedMap[it.second][it.first] == '#' }
+            .size
+}
