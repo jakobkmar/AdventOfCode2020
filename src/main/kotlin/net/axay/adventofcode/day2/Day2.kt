@@ -21,7 +21,5 @@ fun checkPassword(
     serializedPair: String, serializedChar: String, password: String,
     validator: (pair: Pair<Int, Int>, char: Char, password: String) -> Boolean
 ) = validator.invoke(
-    serializedPair.split('-').let { it[0].toInt() to it[1].toInt() },
-    serializedChar[0],
-    password
+    serializedPair.split('-').let { it[0].toInt() to it[1].toInt() }, serializedChar[0], password
 )
