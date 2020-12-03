@@ -25,6 +25,5 @@ class TreeGrid(private val serializedMap: List<String>) {
     fun countTrees(slope: Pair<Int, Int>) =
         (serializedMap.indices step slope.second)
             .map { (((it / slope.second) * slope.first) % width) to it }
-            .filter { serializedMap[it.second][it.first] == '#' }
-            .size
+            .count { serializedMap[it.second][it.first] == '#' }
 }
