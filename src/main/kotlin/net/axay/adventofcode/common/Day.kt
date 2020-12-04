@@ -10,6 +10,7 @@ abstract class Day(val dayOfMonth: Int) {
         File(this::class.java.classLoader.getResource("input/Day$dayOfMonth.txt")?.file
             ?: throw IllegalStateException("An input file for this day could not be found"))
 
+    val inputString get() = inputFile.readLines()
     val inputLines get() = inputFile.readLines()
 
     fun run() {
