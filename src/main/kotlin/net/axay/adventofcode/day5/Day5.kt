@@ -5,26 +5,13 @@ import net.axay.adventofcode.common.Day
 fun main() = Day5.run()
 
 object Day5 : Day(5) {
-    override fun part1() = println(inputLines.map { it.seatID }.maxOrNull())
+    private val passIDs = inputLines.map { it.replace(mapOf('F' to '0', 'B' to '1', 'L' to '0', 'R' to '1')) }
+        .map { it.take(7).toInt(2) * 8 + it.takeLast(3).toInt(2) } // specification -> binary -> int
 
-    override fun part2() {
-        inputLines.map { it.seatID }.sorted().fold<Int, Int?>(null) { prev, current ->
-            if (prev != null && prev + 1 != current) {
-                println(current - 1)
-                return
-            }
-            current
-        }
-    }
+    override fun part1() = println(passIDs.maxOrNull())
+
+    override fun part2() = println((passIDs.minOrNull()!!..passIDs.maxOrNull()!!).sum() - passIDs.sum())
 }
 
-val String.seatID get() = (0..127).toList().foldHalfWithRule(take(7), 'F', 'B').first() * 8 +
-        (0..7).toList().foldHalfWithRule(takeLast(3), 'L', 'R').first()
-
-fun List<Int>.foldHalfWithRule(rule: String, lowerOn: Char, upperOn: Char) = rule.fold(this) { list, char ->
-    when (char) {
-        lowerOn -> list.take(list.size / 2)
-        upperOn -> list.takeLast(list.size / 2)
-        else -> list
-    }
-}
+fun String.replace(replacementMap: Map<Char, Char>) =
+    StringBuilder().apply { this@replace.forEach { append(replacementMap[it] ?: it) } }.toString()
