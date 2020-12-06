@@ -37,7 +37,6 @@ class Passport(serializedLine: String) {
     private val fields = HashMap<String, String>()
 
     init {
-        println(serializedLine)
         serializedLine.split(' ').map { it.split(':') }.forEach { fields[it[0]] = it[1] }
     }
 
