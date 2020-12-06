@@ -20,14 +20,14 @@ abstract class Day(val dayOfMonth: Int) {
         println("------------------------------")
         println("| Running puzzle of day $dayOfMonth |")
         println(" -> Running part 1:")
-        part1()
+        println(part1())
         println(" -> Running part 2:")
-        part2()
+        println(part2())
         println("| Finished puzzle of day $dayOfMonth |")
         println("------------------------------")
     }
 
-    protected abstract fun part1()
-    protected abstract fun part2()
+    protected abstract fun part1(): Any?
+    protected abstract fun part2(): Any?
 
 }
