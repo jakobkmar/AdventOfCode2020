@@ -7,9 +7,9 @@ fun main() = Day4.run()
 object Day4 : Day(4) {
     private val passports = inputStringGrouped.map { Passport(it.replace(System.lineSeparator(), " ")) }
 
-    override fun part1() = println(passports.count { it.validate(validator, true) })
+    override fun part1() = passports.count { it.validate(validator, true) }
 
-    override fun part2() = println(passports.count { it.validate(validator) })
+    override fun part2() = passports.count { it.validate(validator) }
 }
 
 val validator = mapOf<String, (String) -> Boolean>(
