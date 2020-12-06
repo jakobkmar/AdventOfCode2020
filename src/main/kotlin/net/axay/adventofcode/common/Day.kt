@@ -13,6 +13,9 @@ abstract class Day(val dayOfMonth: Int) {
     val inputString get() = inputFile.readText()
     val inputLines get() = inputFile.readLines()
 
+    val inputStringGrouped get() = inputString.split("${System.lineSeparator()}${System.lineSeparator()}")
+    val inputLinesGrouped get() = inputStringGrouped.map { it.split(System.lineSeparator()) }
+
     fun run() {
         println("------------------------------")
         println("| Running puzzle of day $dayOfMonth |")
