@@ -5,8 +5,7 @@ import net.axay.adventofcode.common.Day
 fun main() = Day4.run()
 
 object Day4 : Day(4) {
-    private val passports = inputString.split("${System.lineSeparator()}${System.lineSeparator()}")
-        .map { Passport(it.replace(System.lineSeparator(), " ")) }
+    private val passports = inputStringGrouped.map { Passport(it.replace(System.lineSeparator(), " ")) }
 
     override fun part1() = println(passports.count { it.validate(validator, true) })
 
