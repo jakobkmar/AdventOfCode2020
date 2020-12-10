@@ -11,14 +11,13 @@ object Day10 : Day(10) {
         this += this.last() + 3
     }
 
-    override fun part1() = kotlin.run {
-        val differences = mutableListOf<Int>()
+    override fun part1() = mutableListOf<Int>().run {
         var previous = 0
         adapters.forEach {
-            differences += it - previous
+            this += it - previous
             previous = it
         }
-        differences.count { it == 1 } * differences.count { it == 3 }
+        this.count { it == 1 } * this.count { it == 3 }
     }
 
     override fun part2() = getWays()
